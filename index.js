@@ -1,8 +1,6 @@
-require('dotenv').config();
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
-const prefix = process.env.PREFIX;
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -13,7 +11,7 @@ client.on('message', message => {
     if (message.member.hasPermission('PRIORITY_SPEAKER') || message.member.hasPermission('ADMINISTRATOR')) {
         try {
         // Command startstory [user(s)] ran {Can be run without arguments}
-            if (message.content.startsWith(`${prefix}startstorytime`)) {
+        if (message.content.startsWith('?startstorytime')) {
             // Mute everybody in the voice channel
             const userList = message.member.voice.channel.members.array();
             userList.forEach(element => {
@@ -40,7 +38,7 @@ client.on('message', message => {
             }
         }
         // Stops the story by unmuting everyone
-            else if (message.content.startsWith(`${prefix}stopstorytime`)) {
+        else if (message.content.startsWith('?stopstorytime')) {
             const userList = message.member.voice.channel.members.array();
             userList.forEach(element => {
                 element.voice.setMute(false);
@@ -48,7 +46,7 @@ client.on('message', message => {
             });
             message.channel.send('Story time is now over. Everyone may speak now.');
         }
-            else if (message.content.startsWith(`${prefix}helpstorytime`)) {
+        else if (message.content.startsWith('?helpstorytime')) {
             message.reply('\nMake sure you join a voice channel before activated the commands.\nThere are two commands:\n    ?startstory\n    ?stopstory\nYou can mention anyone with ?startstory and it will mute everyone but them.\nIf you run it without any mentions, it will mute everyone but you.\n?stopstory will unmute everyone\n');
             }
     }
@@ -87,3 +85,5 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         }
     }
 });
+
+client.login('NzcxOTYxMzUyMTMzNTQxODg4.X5zvCA.I8LWOkxLwZOJcQmoGcytysA4KQU');
