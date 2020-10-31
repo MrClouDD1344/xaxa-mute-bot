@@ -1,7 +1,8 @@
+require('dotenv').config();
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
 
 const client = new Discord.Client();
+const prefix = process.env.PREFIX;
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -86,5 +87,3 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         }
     }
 });
-
-client.login(token);
