@@ -85,3 +85,4 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         }
     }
 });
+client.login(process.env.BOT_TOKEN);
